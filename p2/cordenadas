@@ -1,0 +1,7 @@
+rectangulo 100 100 20 40 ;
+circulo 115 105 10 ;
+circulo 115 125 10 ;
+rectangulo 90 110 10 20 ;
+circulo 103 135 8 ;
+line 102 140 90 180 ;
+line 110 140 122 180 ;
