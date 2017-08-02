@@ -1,0 +1,138 @@
+------------------Regla----------------------
+proc Linea(){
+		Left(90);
+		Forward($1);
+		Left(180);
+		Forward($1 *2);
+		Right(180);
+		Forward($1);
+		Right(90);
+}
+proc Regla(){
+	if($1 > 5){
+	Linea($1);
+	Forward($2);
+	Backward($2*2);
+	Forward($2);
+	Forward($2 / 2);
+	Regla($1 / 2, $2 / 2);
+	Backward($2);
+	Regla($1 / 2 , $2 / 2);
+	Forward($2 / 2);
+	}
+}
+Regla(100, 500);
+
+------------------Cuadro--------------------------
+proc cuadroE(){
+	if($1 < 200){
+	Forward($1);
+	Left(90);
+	Forward($1);
+	Left(90);
+	Forward($1 + $1/10 );
+	Left(90);
+	cuadro($1+ 2 * ($1/10));
+	}
+}
+	cuadroE(100);
+
+-----------------Estrella----------------------------
+
+	Color(255,255,255);
+	Backward(200);
+	Color(0,0,0);
+	Right(34);
+	Forward(360);
+	Left(124);
+	Forward(400);
+	Left(124);
+	Forward(360);
+	Left(146);
+	Color(255,255,255);
+	Forward(400);
+	Color(0,0,0);
+	Left(180);
+	Right(34);
+	Forward(360);
+	Left(124);
+	Forward(400);
+	Left(124);
+	Forward(360);
+--------------- Estrella 2------------------------------
+
+proc estrella(){
+	for(i=0;i<5;i=i+1){
+	Forward(100);
+	Left(144);
+}
+}
+Color(0, 0, 0);
+estrella();
+
+---------------Poligono---------------------------------
+proc poligono(){
+	for(i=0;i < $1;i =i +1){
+	Left(360 / $1);
+	Forward($2); 
+	}
+}
+Color(0,0,0);
+poligono(3, 50);	
+
+//Cambiamos $1 para el numero de lados de los poligonos
+
+--------------------Arbol------------------------------
+proc treeD(){
+	if($1 < 5) {
+	Forward($1);
+	Backward($1);
+	} else {
+	Forward($1 / 3);
+	Right(30);
+	treeD($1 * ( 2 / 3 ) );
+	Left(30);
+	Forward($1 / 6);
+	Right(25);
+	treeD($1 / 2);
+	Left(25);
+	Forward($1 / 3);
+	Right(25);
+	treeD($1 / 2);
+	Left(25);
+	Forward($1 / 6);
+	Backward($1);
+}
+}
+
+proc treeI(){
+        if($1 < 5)  {
+        Forward($1);
+        Backward($1);
+        } else {
+        Forward($1 / 3);
+        Left(30);
+        treeI($1 * ( 2 / 3 ) );
+        Right(30);
+        Forward($1 / 6);
+        Left(25);
+        treeI($1 / 2);
+        Right(25); 
+        Forward($1 / 3);
+        Left(25);
+        treeI($1 / 2);
+        Right(25);
+        Forward($1 / 6);
+        Backward($1);
+        }
+        } 
+        Color(255,255,255);
+        Backward(200);
+        Color(0, 0, 0);
+        treeI(200);
+        treeD(200);
+
+
+
+
+
